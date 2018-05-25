@@ -67,7 +67,6 @@ https://edgecoders.com/how-well-do-you-know-node-js-36b1473c01c8
 31. How can you print only one level of a deeply nested object?
 
 32. What is the node-gyp package used for?
-+ node-gyp is the recommended tool by Node.js to build native (i.e. C++) addons.
 
 33. The objects exports, require, and module are all globally available in every module but they are different in every module. How?
 
