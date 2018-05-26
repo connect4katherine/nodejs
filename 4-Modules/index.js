@@ -1,3 +1,8 @@
+// console.log(arguments);
+
+// ============================================================
+// Node will favor the 'find-me' module over '/find-me/index'
+
 console.log(module);
 
 const mod = require('find-me');
