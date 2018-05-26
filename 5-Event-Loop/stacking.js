@@ -1,7 +1,7 @@
 // ============================================================
 // Let's get some functions on the stack
 
-/*
+
 const add = (a, b) => a + b;
 
 const double = a => add(a, a);
@@ -9,10 +9,10 @@ const double = a => add(a, a);
 const printDouble = a => {
 	const output = double(a);
 
-	console.log(console.log(output));
+	console.log('printDouble ', output);
 }
 printDouble(10);
-*/
+
 
 // ============================================================
 // Process between queue, call stack and node
@@ -27,7 +27,6 @@ slowAdd(5, 6, 0);
 
 // ============================================================
 // Loops as blocking code...
-
 
 const slowedByFor = (a, b) =>{
 	for(let i = 0; i < 999999999; i++){}
@@ -51,3 +50,4 @@ console.timeEnd('c');
 console.log(a);
 console.log(b);
 console.log(c);
+
