@@ -20,7 +20,10 @@ process.stdin.on('readable', ()=>{
 		console.log('readable - timeout');
 	}, 0);
 
+	process.nextTick(console.log, 'readable - nextTick');
+
 	setImmediate(() => {
 		console.log('readable - immediate');
 	});
 });
+
