@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<meta charset=utf-8>
+	<meta name=description content="">
+	<meta name=viewport content="width=device-width, initial-scale=1">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+</head>
+<body>
+
+	<h1>Our API!</h1>
+
+
+	<script type="text/javascript">
+
+		var key = 'qmcstacn3bxsqvsyuwcgcmyz';
+		var key2 = '8296a3cs7c4ycej26mccncwj';
+		var url1 = 'http://api.canlii.org/v1/caseBrowse/en/?api_key=';
+		var url2 = 'http://api.canlii.org/v1/legislationBrowse/en/?api_key=';
+
+		$(document).ready(function() {
+			$('h1').after('<a href="'+ url1 + key2 + '" target="_blank">' + url1 + '</a><br>');
+			$('h1').after('<a href="'+ url2 + key2 + '" target="_blank">' + url2 + '</a><br>');
+		});
+
+	</script>
+</body>
+</html>
