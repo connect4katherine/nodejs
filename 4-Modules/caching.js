@@ -11,7 +11,7 @@ setTimeout(()=>{
 setTimeout(logCache, 200);
 */
 function requireCache(){
-	require('./caching_print');
+	return require('./caching_print');
 }
 
 function logCache() {
