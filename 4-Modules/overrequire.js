@@ -22,8 +22,7 @@ console.log(fs2);
 // and also want to use
 // overReq(10, 'Hello');
 
-
-
+/*
 const print = (stars, header) => {
   console.log('*'.repeat(stars));
   console.log(header);
@@ -37,3 +36,4 @@ if(require.main === module){
 	// if this is a required module
 	module.exports = print;
 }
+*/
