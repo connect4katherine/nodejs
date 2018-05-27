@@ -1,5 +1,5 @@
 // ============================================================
-// Set Immediate
+// Set Immediate Outside of I/O Process
 
 Promise.resolve(()=>{
 
@@ -13,6 +13,9 @@ Promise.resolve(()=>{
 
 })
 .then(fn => fn());
+
+// ============================================================
+// Set Immediate In I/O Process (type some stuff in CLI for this one)
 
 process.stdin.resume();
 process.stdin.on('readable', ()=>{
