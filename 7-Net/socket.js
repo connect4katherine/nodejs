@@ -1,33 +1,41 @@
 process.stdout.write('\u001B[2J\u001B[0;0f');
 const server = require('net').createServer();
 const port = 3000;
-const counter = 0;
+let counter = 0;
 let sockets = {};
 
 // ============================================================
 // Listen for clients connecting
 
 server.on('connection', socket => {
-	socket.id = counter++;
-	sockets[socket.id] = socket;
-
 	socket.setEncoding('utf8');
-	console.log('Client connected');
-	socket.write('Hey - thanks for connecting!');
+	socket.id = counter++;
 
-	socket.on('data', data =>{
-		/*
+
+	// sockets[socket.id] = socket;
+	console.log(`Client ${socket.id} connected`);
+	socket.write(`What is your name client ${socket.id}?`);
+
+	socket.on('data', (data) =>{
+		console.log(data);
+		// if new, add to object and assume input is name
+		if(!sockets[socket.id]){
+			socket.name = data.toString().trim();
+			socket.write(`Marco... polo...\nWelcome ${socket.name}`);
+			socket[socket.id] = socket;
+		}
+
+		// otherwise, data input is new and not username
 		Object.entries(sockets)
-			.forEach(([key, cs])=>{
-				cs.write(`${socket.id} : ${data}`);
-			});
-		*/
+		.forEach(([key, cs]) => {
+			if(socket.id == key) return;
 
-		console.log(`buffer of data from ${socket.id}: ${data}`);
-		socket.write('marco... pollo...' + data);
+			cs.write(`${socket.name} ${timestamp()}: `);
+			cs.write(data);
+		});
 	});
 
-	socket.on('end', socket =>{
+	socket.on('end', () =>{
 		delete sockets[socket.id];
 		console.log('bye client...');
 	});
