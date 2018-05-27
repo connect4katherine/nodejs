@@ -2,6 +2,9 @@ const EventEmitter = require('events');
 const readline = require('readline');
 
 // ============================================================
+// Run using node list-request.js
+
+// ============================================================
 // Mocking Client Request
 
 const rl = readline.createInterface({
