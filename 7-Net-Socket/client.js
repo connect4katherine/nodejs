@@ -1,6 +1,5 @@
 process.stdout.write('\u001B[2J\u001B[0;0f');
 const net = require('net');
-const fs = require('fs');
 const readline = require('readline');
 const port = 3000;
 
