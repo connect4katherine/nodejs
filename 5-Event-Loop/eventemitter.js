@@ -60,3 +60,21 @@ logdat.on('end', ()=>console.log('...done now'));
 logdat.execute(()=> console.log('****doing the thing*****'));
 
 */
+
+// ============================================================
+// Error Handling
+
+process.once('unhandledRejection', (err) => {
+	console.log('********************************* \ninside our unhandledRejection event');
+  console.log(err);
+  // do some cleanup
+
+  process.exit(1); 
+  // exit anyway
+});
+
+process.on('unhandledRejection', (err) => {
+  console.log('not going to run because process exited before this one');
+});
+
+Promise.reject(new Error('AHHHHHHHHHHHHHH'));
