@@ -21,16 +21,30 @@ server.bind(port, host);
 
 // ============================================================
 // client-side
+// send message buffer
+// in small pieces
 
 const client = dgram.createSocket('udp4');
-client.send('SMILE!', port, host, (err) =>{
+const msgToSend = Buffer.from('SMILE!');
+client.send(msg, 0, 1, port, host, (err) =>{
 	if(err) throw err;
 
 	console.log('Client callback\n');
 	client.close();
 });
 
+client.send(msg, 1, 2, port, host, (err) =>{
+	if(err) throw err;
+
+	console.log('Client callback\n');
+	client.close();
+});
+
+
+
 /*
+// send smile message (as text)
+// over and over
 setInterval(function() {
 	const client = dgram.createSocket('udp4');
 	client.send('SMILE!', port, host, (err) =>{
