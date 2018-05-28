@@ -25,18 +25,22 @@ server.bind(port, host);
 // in small pieces
 
 const client = dgram.createSocket('udp4');
-const msgToSend = Buffer.from('SMILE!');
-client.send(msg, 0, 1, port, host, (err) =>{
+const msgToSend = Buffer.from('Jargon ipsum dolor sit amet. Snackable content skyscraper experienced by few seen by many, nimble tactics tissue session case study storytelling disruptive tactics tipping point rallying cry mood board micro targeted experiential verticals!');
+client.send(msgToSend, 0, 1, port, host, (err) =>{
 	if(err) throw err;
-
-	console.log('Client callback\n');
-	client.close();
 });
 
-client.send(msg, 1, 2, port, host, (err) =>{
+client.send(msgToSend, 1, 2, port, host, (err) =>{
 	if(err) throw err;
+});
 
-	console.log('Client callback\n');
+client.send(msgToSend, 3, 5, port, host, (err) =>{
+	if(err) throw err;
+});
+
+// close last send
+client.send(msgToSend, 8, msgToSend.length, port, host, (err) =>{
+	if(err) throw err;
 	client.close();
 });
 
