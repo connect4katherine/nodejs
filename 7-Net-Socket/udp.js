@@ -26,6 +26,9 @@ server.bind(port, host);
 
 const client = dgram.createSocket('udp4');
 const msgToSend = Buffer.from('Jargon ipsum dolor sit amet. Snackable content skyscraper experienced by few seen by many, nimble tactics tissue session case study storytelling disruptive tactics tipping point rallying cry mood board micro targeted experiential verticals!');
+
+// int client.send, 
+// specify offset and lenght if sending a buffer
 client.send(msgToSend, 0, 1, port, host, (err) =>{
 	if(err) throw err;
 });
