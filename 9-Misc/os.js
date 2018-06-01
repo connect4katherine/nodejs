@@ -1,21 +1,35 @@
-// https://nodejs.org/api/os.html
+// ============================================================
+// Built-In Globals
 
-var os = require("os");
+/*
+['__filename', '__dirname', 'arguments', 'exports', 'require']
+.map(cmd =>{
+console.log(`
+*************************************
+${cmd} 
+*************************************
+`, eval(cmd));
+});
+*/
 
+// ============================================================
+// OS Functions For
 // Endianness
-console.log('endianness : ' + os.endianness());
-
 // OS type
-console.log('type : ' + os.type());
-
 // OS platform
-console.log('platform : ' + os.platform());
-
 // Total system memory
-console.log('total memory : ' + os.totalmem() + " bytes.");
-
 // Total free memory
-console.log('free memory : ' + os.freemem() + " bytes.");
+// Constants
 
-console.log(os.constants.signals);
-console.log(os.constants.errno);
+const os = require("os");
+
+['os.endianness()', 'os.type()', 'os.platform()', 'os.totalmem()', 'os.freemem()', 'os.constants.signals', 'os.constants.errno']
+.map(cmd =>{
+console.log(`
+*************************************
+${cmd} : 
+*************************************
+`, eval(cmd));
+});
+
+
