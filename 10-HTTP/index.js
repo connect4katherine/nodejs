@@ -19,10 +19,10 @@ server.listen(3000);
 
 // ============================================================
 // HTTPS 
-
 // run from bash
 // openssl req -x509 -newkey rsa:4096 -keyout key.pem -out cert.pem -nodes
 
+/*
 const fs = require('fs');
 const httpsOptions = {
 	key: fs.readFileSync('./key.pem'),
@@ -37,3 +37,22 @@ server.on('request', (req, res) =>{
 });
 
 server.listen(3000);
+*/
+
+// ============================================================
+// HTTP
+
+const http = require('http');
+const myNodeReq = http.request(
+	{hostname: 'www.google.com'},
+	(res)=>{
+		console.log(res.headers);
+
+		res.on('data', d => {
+			console.log(d.toString().substring(0, 60));
+		});
+	});
+
+// console.log(myNodeReq.agent);
+myNodeReq.on('error', console.log);
+myNodeReq.end();
