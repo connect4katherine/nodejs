@@ -9,6 +9,7 @@ const files = fs.readdirSync(dirname);
 
 // ============================================================
 // half the files 
+
 /*
 files.forEach(file =>{
 	let filePath = path.join(dirname, file);
@@ -21,9 +22,9 @@ files.forEach(file =>{
 });
 */
 
-
 // ============================================================
 // re-do -- double the files
+
 /*
 files.forEach(file =>{
 	let filePath = path.join(dirname, file);
