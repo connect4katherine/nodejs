@@ -9,6 +9,8 @@ const ms1Day = 24*60*60*1000;
 // ============================================================
 // Seed files
 /*
+fs.mkdirSync(dirname);
+
 for(let i = 0; i < 10; i++){
 	const filePath = path.join(dirname, `file${i}.txt`);
 	const data = new Array(10).fill(i);
@@ -30,7 +32,8 @@ fs.readdir(dirname, (err, files)=>{
 		const filePath = path.join(dirname, file);
 		const stat = fs.statSync(filePath);
 
-		if(stat.atime < (Date.now() - ms1Day*7)){
+		// Modify time < last week
+		if(stat.mtime < (Date.now() - ms1Day*7)){
 			console.log(`Deleting ${file}`);
 			fs.unlinkSync(filePath);
 		}
