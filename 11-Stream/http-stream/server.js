@@ -14,17 +14,25 @@ const FS = require('fs');
 
 const server = require('http').createServer();
 server.on('request', (req, res)=>{
+	console.log(req.method, req.url);
+	// console.log(Object.keys(req.readable));
+
 	switch(req.url){
+		case '/submitEndpoint':
+		if(req.method === 'POST'){
+			console.log('POSTED');	
+			console.log((req.headers));
+		}
+		res.writeHead(301, {'Location': '/'});
+		res.end();
+		break;
 		case '/':
 		default:
+		if(req.method === 'GET'){
 			res.writeHead(200, {'content-type': 'text/html'});
 			res.end(FS.readFileSync(Path.join(__dirname, 'index.html')));
-			break;
-		case '/sendFiles':
-			console.log(req);
-			res.writeHead(200, {'content-type': 'application/json'});
-			res.end(JSON.stringify({"response": "ok"}));
-			break;
+		}
+		break;
 	}
 });
 
