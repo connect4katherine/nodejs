@@ -47,19 +47,26 @@ server.on('request', (req, res)=>{
 				// save to db
 				// DB.collection('files').insertOne({name: 'Posted', location});
 
-				req.on('data', chunk => {
+				let body = [];
+				req.on('data', (chunk)=>{
 					// delmit chunks based on boundary?
 					// console.log(chunk.toString());
 					// console.log(chunk.toString().substr(0, boundary.length) === boundary);
-					console.log(chunk.toString().split(boundary));
+					// console.log(chunk.toString().split(boundary));
+					body.push(chunk);
 
 					// write to file 
 					// const writeStream = FS.createWriteStream('./' + location );
 					// writeStream.write(chunk);
 				});
+				req.on('end', ()=>{
+					body = Buffer.concat(body).toString();
+					console.log(body);
+
+					res.writeHead(200, {'Content-Type': 'application/json'});
+					res.end(JSON.stringify({body}));
+				});
 			}
-			res.writeHead(301, {'Location': '/'});
-			res.end();
 		})();
 		break;
 
@@ -83,11 +90,12 @@ server.on('request', (req, res)=>{
 
 (async ()=>{
 	const mongodb_uri = 'mongodb://localhost:27017/my_db';
-	try{
+	try {
 
 		const client = await Mongo.connect(mongodb_uri);
 		DB = client.db('my_db');
 	} catch(err){
+
 		console.log(err);
 	}
 
