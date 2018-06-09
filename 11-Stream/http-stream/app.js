@@ -37,14 +37,25 @@ server.on('request', (req, res)=>{
 		(async ()=>{
 			if(req.method === 'POST'){
 				console.log('POSTED');	
-				console.log((req.headers));
+				// console.log((req.headers));
+				// console.log(Object.keys(req));
 
 				const location = '/files/' + +new Date();
-				// await DB.collection('files').insertOne({name: req.headers.name, location})
+				let [contentType, boundary] = req.headers['content-type'].split(';');
+				boundary = boundary.replace(' boundary=', '--');
+
+				// save to db
+				// DB.collection('files').insertOne({name: 'Posted', location});
 
 				req.on('data', chunk => {
-					const writeStream = FS.createWriteStream('./' + location );
-					writeStream.write(chunk);
+					// delmit chunks based on boundary?
+					// console.log(chunk.toString());
+					// console.log(chunk.toString().substr(0, boundary.length) === boundary);
+					console.log(chunk.toString().split(boundary));
+
+					// write to file 
+					// const writeStream = FS.createWriteStream('./' + location );
+					// writeStream.write(chunk);
 				});
 			}
 			res.writeHead(301, {'Location': '/'});
