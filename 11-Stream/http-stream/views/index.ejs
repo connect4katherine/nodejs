@@ -11,7 +11,7 @@
 <body class="container">
 	<h1>Upload a File!</h1>
 	<hr>
-	<div class="card">
+	<div class="card card-body">
 	<form enctype="multipart/form-data" method="POST" action="/submitEndpoint">
 		<div class="form-group">
 			<label>My Text Input
@@ -26,7 +26,7 @@
 		<input type="submit" name="submitTheForm" class="btn btn-primary btn-raised" />
 	</form>
 	</div>
-	<div class="card">
+	<div class="card card-body">
 		<ul>
 			<% files.forEach(function(file){ %>
 			<li>
