@@ -4,8 +4,8 @@
 const PORT = 3000;
 const Path = require('path');
 const FS = require('fs');
-const ejs = require('ejs');
-const db = require('mongodb');
+const EJS = require('ejs');
+const DB = require('mongodb');
 
 // ============================================================
 // 
@@ -22,10 +22,13 @@ server.on('request', (req, res)=>{
 	switch(req.url){
 		case '/':
 		if(req.method === 'GET'){
-			// res.writeHead(200, {'content-type': 'text/html'});
-			// res.end(FS.readFileSync(Path.join(__dirname, 'index.html')));
-			const template = FS.readFileSync('./views/index.html');
-			res.end(ejs.render(template, {}));
+			res.writeHead(200, {'content-type': 'text/html'});
+			res.end(FS.readFileSync(Path.join(__dirname, 'views', 'index.html')));
+			// const template = './views/index.html';
+			// const template = EJS.compile('./views/index.html');
+			// res.end(EJS.render(template));
+
+			res.end(EJS.renderFile('./views/index.html', {}))
 		}
 		break;
 		case '/submitEndpoint':
