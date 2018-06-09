@@ -23,12 +23,14 @@ server.on('request', (req, res)=>{
 		case '/':
 		if(req.method === 'GET'){
 			res.writeHead(200, {'content-type': 'text/html'});
-			res.end(FS.readFileSync(Path.join(__dirname, 'views', 'index.html')));
-			// const template = './views/index.html';
+			// res.end(FS.readFileSync(Path.join(__dirname, 'views', 'index.html')));
 			// const template = EJS.compile('./views/index.html');
 			// res.end(EJS.render(template));
 
-			res.end(EJS.renderFile('./views/index.html', {}))
+			// const template = './views/index.html';
+			EJS.renderFile('./views/index.html', {})
+				.then(template => res.end(template));
+			// res.end();
 		}
 		break;
 		case '/submitEndpoint':
