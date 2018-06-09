@@ -11,6 +11,7 @@
 <body class="container">
 	<h1>Upload a File!</h1>
 	<hr>
+	<div class="card">
 	<form enctype="multipart/form-data" method="POST" action="/submitEndpoint">
 		<div class="form-group">
 			<label>My Text Input
@@ -24,5 +25,22 @@
 		</div>
 		<input type="submit" name="submitTheForm" class="btn btn-primary btn-raised" />
 	</form>
+	</div>
+	<div class="card">
+		<ul>
+			<% files.forEach(function(file){ %>
+			<li>
+				<h4><%= file.name %></h4>
+				<a class="btn" href="/files/<%- file.location %>" target="_blank">Try it out</a>
+			</li>
+			<% }); %>
+		</ul>
+	</div>
+
+	<footer>
+		<a href="https://davidwalsh.name/nodejs-http-request">Muchas Gracias!</a>
+        <a href="https://docs.nodejitsu.com/articles/advanced/streams/how-to-use-fs-create-write-stream/">Vielen Dank!</a> 
+        <a href="https://elegantcode.com/2011/04/06/taking-baby-steps-with-node-js-pumping-data-between-streams/">Merci beaucoup!</a>
+	</footer>
 </body>
 </html>

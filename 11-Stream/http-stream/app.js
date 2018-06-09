@@ -1,15 +1,11 @@
 // ============================================================
-// 
+// Packages
 
 const PORT = 3000;
 const Path = require('path');
 const FS = require('fs');
 const EJS = require('ejs');
 const DB = require('mongodb');
-
-// ============================================================
-// 
-
 
 // ============================================================
 // Routes
@@ -21,17 +17,12 @@ server.on('request', (req, res)=>{
 
 	switch(req.url){
 		case '/':
-		if(req.method === 'GET'){
+		(async ()=>{
+			const files = [{name: 'Oreo', location: 'lego'}]
+			const template = await EJS.renderFile('./views/index.ejs', {files});
 			res.writeHead(200, {'content-type': 'text/html'});
-			// res.end(FS.readFileSync(Path.join(__dirname, 'views', 'index.html')));
-			// const template = EJS.compile('./views/index.html');
-			// res.end(EJS.render(template));
-
-			// const template = './views/index.html';
-			EJS.renderFile('./views/index.html', {})
-				.then(template => res.end(template));
-			// res.end();
-		}
+			res.end(template);
+		})();
 		break;
 		case '/submitEndpoint':
 		if(req.method === 'POST'){
@@ -39,15 +30,24 @@ server.on('request', (req, res)=>{
 			console.log((req.headers));
 
 			req.on('data', chunk => {
-                let writeStream = FS.createWriteStream('./files/' + (+ new Date()) );
-                writeStream.write(chunk);
+				let writeStream = FS.createWriteStream('./files/' + (+ new Date()) );
+				writeStream.write(chunk);
 			});
 		}
 		res.writeHead(301, {'Location': '/'});
 		res.end();
 		break;
 		default:
+		console.log(req.url);
+		res.writeHead(404);
+		res.end();
+		break;
 	}
 });
 
+// ============================================================
+// Connect to DB and start server
+(async ()=>{
+
 server.listen(PORT);
+})();
